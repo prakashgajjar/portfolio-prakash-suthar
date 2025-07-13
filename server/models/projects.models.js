@@ -27,7 +27,7 @@ const projectSchema = new mongoose.Schema({
   GithubLink : {
     type: String
   },
-  LinkedinLink: { type: String },
+  linkdinLink: { type: String },
   order: {
     type: Number, 
     default: 1, 

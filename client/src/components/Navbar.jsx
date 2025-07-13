@@ -35,7 +35,7 @@ const Navbar = () => {
       className={`fixed w-full top-0 z-[100] transition-transform duration-500 ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}
     >
       <div className="backdrop-blur-lg bg-black/30 border-b border-white/10 px-6 py-4 flex justify-between items-center shadow-md">
-        
+
         {/* Logo */}
         <h1 className="text-purple-400 text-2xl font-bold tracking-wide cursor-pointer transition-transform duration-300 hover:scale-105">
           PRAKASH.dev
@@ -68,20 +68,30 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="sm:hidden bg-black/70 backdrop-blur-lg px-6 py-4 flex flex-col gap-4">
-          {navItems.map(({ name, path }) => (
+        <div
+          className={`
+      sm:hidden 
+      bg-black/70 backdrop-blur-lg px-6 py-4 flex flex-col gap-4
+      transform transition-all duration-500 ease-out
+      animate-slideDown
+    `}
+        >
+          {navItems.map(({ name, path }, index) => (
             <NavLink
               key={name}
               to={path}
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `text-lg font-mono tracking-wide transition duration-300
-                ${isActive ? 'text-purple-400' : 'text-white hover:text-purple-400'}`
+      ${isActive ? 'text-purple-400' : 'text-white hover:text-purple-400'}
+      fade-slide-in`
               }
+              style={{ animationDelay: `${index * 100}ms` }} // 0ms, 100ms, 200ms, ...
             >
               {name}
             </NavLink>
           ))}
+
         </div>
       )}
     </nav>

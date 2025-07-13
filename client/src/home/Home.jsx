@@ -4,9 +4,14 @@ import RotatingText from "../components/RotatingText";
 import Navbar from "../components/Navbar";
 import getAllProject from "../api/getAllproject.api";
 import { FaLinkedin, FaTwitter, FaGithub, FaEnvelope, FaInstagram } from "react-icons/fa"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomCursor from "../components/CustomeCursor";
-import Hero from "./HeroSection";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import GetInTouchPopup from "../components/GetInTouchPopup";
+import MessageSentPopup from "../components/MessageSentPopup";
+
+
 const drawCanvas = (id, showCircle, height) => {
   const canvas = document.getElementById(id);
   if (!canvas) return;
@@ -51,6 +56,21 @@ const positions = [
 const Home = () => {
   const location = useLocation();
   const [projects, setProjects] = useState([]);
+  const Navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [showSentPopup, setShowSentPopup] = useState(false);
+
+  const handleSent = () => {
+    setShowPopup(false);
+    setShowSentPopup(true);
+  };
+
+  useEffect(() => {
+    AOS.init({
+      once: true
+    })
+
+  }, []);
 
   useEffect(() => {
     if (location.hash) {
@@ -88,7 +108,9 @@ const Home = () => {
   return (
     <div className="scrollable relative ">
       <div>
-        <CustomCursor />
+        <div className="hidden sm:block">
+          <CustomCursor />
+        </div>
         <Navbar />
       </div>
       {/* Section 1: Home */}
@@ -147,7 +169,16 @@ const Home = () => {
 
             {
               projects && projects.map((project, index) => (
-                <div key={index} className={positions[index]}>
+                <div key={index} className={positions[index]}
+                  data-aos={positions[index] === "right" ? "fade-left" : "fade-right"}
+                  data-aos-duration="500"
+                  data-aos-delay="200"
+                  data-aos-easing="ease-in-out"
+
+                  onClick={() => {
+                    Navigate(`/projects/${project.slug}`);
+                  }}
+                >
                   <ProjectCard imageSrc={project.images[0]} text={project.title} />
                 </div>
               ))
@@ -295,7 +326,7 @@ const Home = () => {
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2">
                     <FaLinkedin />
-                    <a href="https://linkedin.com/in/prakashgajjar" target="_blank" className="hover:underline">
+                    <a href="https://www.linkedin.com/in/prakash-suthar-15968127a/" target="_blank" className="hover:underline">
                       in/prakashgajjar
                     </a>
                   </li>
@@ -307,7 +338,7 @@ const Home = () => {
                   </li>
                   <li className="flex items-center gap-2">
                     <FaInstagram />
-                    <a href="https://instagram.com/prakashgajjar" target="_blank" className="hover:underline">
+                    <a href="https://www.instagram.com/prksh.suthar/" target="_blank" className="hover:underline">
                       @PrakashGajjar
                     </a>
                   </li>
@@ -319,7 +350,7 @@ const Home = () => {
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2">
                     <FaTwitter />
-                    <a href="https://twitter.com/prakashgajjar" target="_blank" className="hover:underline">
+                    <a href="https://x.com/Prakash80180577" target="_blank" className="hover:underline">
                       @PrakashGajjar
                     </a>
                   </li>
@@ -333,17 +364,26 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <a
-                href="mailto:prakashgajjar096@gmail.com"
+              <button
+                onClick={() => setShowPopup(true)}
                 className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 text-white font-mono font-bold shadow-lg hover:shadow-purple-500/50 transition"
               >
                 GET IN TOUCH
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </section >
+      <GetInTouchPopup
+        show={showPopup}
+        onClose={() => setShowPopup(false)}
+        onSent={handleSent}
 
+      />
+      <MessageSentPopup
+        show={showSentPopup}
+        onClose={() => setShowSentPopup(false)}
+      />
     </div >
   );
 };

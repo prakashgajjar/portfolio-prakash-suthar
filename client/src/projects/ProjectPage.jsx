@@ -1,55 +1,142 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import getOneProject from "../api/getOneProject.api";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const ProjectPage = () => {
-    return (
-        <div className="flex flex-col lg:flex-row h-screen overflow-hidden bg-black text-white ">
-            <div className="w-full lg:w-2/3 flex flex-col gap-4 p-8 overflow-auto">
-                {[1, 2, 3, 4].map((num) => (
-                    <img
-                        key={num}
-                        src={`/images/poplix/poplix${num}.png`}
-                        alt={`poplix${num}`}
-                        className="w-full rounded-lg object-cover shadow-lg"
-                    />
-                ))}
-            </div>
+  const slug = useParams(); // get slug directly
+  const navigate = useNavigate();
+  const [project, setProject] = useState({});
+  const [currentSlug, setCurrentSlug] = useState(slug);
 
-            {/* Details Section */}
-            <div className="w-full lg:w-1/3 p-8 flex flex-col gap-20">
-                <div className="flex justify-between  mt-8">
-                    <button className="text-gray-400 hover:text-white transition">
-                        &larr; Back
-                    </button>
-                    <button className="text-gray-400 hover:text-white transition">
-                        Next &rarr;
-                    </button>
-                </div>
-                {/* Tags */}
-                <div className="mb-6">
-                    <p className="text-sm text-gray-400 mb-4">#Design, #UX, #PHP, #Wordpress, #jQuery, #Vue</p>
-                    <h2 className="text-3xl font-bold mb-4">National Geographic Learning</h2>
-                    <p className="mb-4 text-gray-300">
-                        A blog/offer website for National Geographic Learning. Designed a custom, sleek layout,
-                        taking NG Brand Book into account. Developed as a WordPress dedicated theme with custom AJAX
-                        timeline stream, SM integration and more.
-                    </p>
-                    <p className="mb-6 text-gray-400">
-                        Also implemented store locator with filter and search - built with Vue.
-                    </p>
-                    <a
-                        href="#"
-                        className="inline-block px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 transition"
-                    >
-                        VISIT
-                    </a>
-                </div>
+  useEffect(() => {
+    getOneProject(slug)
+      .then((res) => {
+        setCurrentSlug(res.project.slug);
+        setProject(res.project);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [slug]);
 
-                {/* Arrows */}
+  const projects = [
+    {
+      slug: "poplix-social-media-app",
+      index: 1,
+    },
+    {
+      slug: "youtube-clone",
+      index: 2,
+    },
+    {
+      slug: "novio-fashion-brand",
+      index: 3,
+    },
+    {
+      slug: "whatsapp-clone",
+      index: 4,
+    },
+    {
+      slug: "novio-genisis-ai-chat-app",
+      index: 5,
+    },
+  ];
 
-            </div>
+  const sorted = projects.sort((a, b) => a.index - b.index);
+  const currentIndex = sorted.findIndex((p) => p.slug === currentSlug);
 
+  const prev = sorted[
+    (currentIndex - 1 + sorted.length) % sorted.length
+  ];
+  const next = sorted[(currentIndex + 1) % sorted.length];
+
+  const handlePrev = () => navigate(`/projects/${prev.slug}`);
+  const handleNext = () => navigate(`/projects/${next.slug}`);
+
+  return (
+    project && (
+      <div className="flex flex-col-reverse lg:flex-row bg-black text-white">
+        {/* Images Section */}
+        <div className="w-full lg:w-2/3 flex flex-col gap-4 p-8">
+          {project?.images?.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt=""
+              className="w-full rounded-lg object-cover shadow-lg"
+            />
+          ))}
         </div>
-    )
-}
 
-export default ProjectPage
+        {/* Details Section */}
+        <div className="w-full lg:w-1/3 p-8 flex flex-col gap-20">
+          <div className="flex justify-between mt-8">
+            <div>
+              <button
+                onClick={() => navigate("/#work")}
+                className="text-gray-400 hover:text-white transition"
+              >
+                &larr; Work
+              </button>
+            </div>
+            <div className="flex justify-between gap-2">
+              <button
+                onClick={handlePrev}
+                className="text-gray-400 hover:text-white transition"
+              >
+                &larr; Previous
+              </button>
+              <button
+                onClick={handleNext}
+                className="text-gray-400 hover:text-white transition"
+              >
+                Next &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <p className="text-lg text-gray-400 mb-4">
+              {project?.hashtags?.join(", ")}
+            </p>
+
+            <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
+            <p className="mb-4 text-gray-300">{project.description}</p>
+
+            <div className="flex items-center gap-6 mt-4 flex-wrap">
+              {project?.visitLink && (
+                <Link
+                  to={project.visitLink}
+                  className="inline-block px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 transition"
+                >
+                  VISIT
+                </Link>
+              )}
+
+              <a
+                href={project?.GithubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition text-2xl"
+              >
+                <FaGithub />
+              </a>
+
+              <a
+                href={project?.linkdinLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-500 transition text-2xl"
+              >
+                <FaLinkedin />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  );
+};
+
+export default ProjectPage;
