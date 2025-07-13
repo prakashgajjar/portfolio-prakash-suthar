@@ -1,4 +1,3 @@
-import React from "react";
 import { CheckCircle } from "lucide-react"; // Or any success icon!
 
 export default function MessageSentPopup({ show, onClose }) {

@@ -9,7 +9,7 @@ const response = async (req, res) => {
       return res.status(400).json({ message: "Name is required" });
     }
      await Response.create({ name, message });
-    console.log("Response created successfully");
+    // console.log("Response created successfully");
     res.status(200).json({ name: name, message: message });
   } catch (error) {
     console.log(error);

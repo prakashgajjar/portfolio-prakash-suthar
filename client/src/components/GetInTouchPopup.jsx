@@ -8,8 +8,8 @@ export default function GetInTouchPopup({ show, onClose , onSent }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Name:", name);
-    console.log("Message:", message);
+    // console.log("Name:", name);
+    // console.log("Message:", message);
     responseSend(name, message).then(()=>{
       onSent();
     }).catch((error)=>{
