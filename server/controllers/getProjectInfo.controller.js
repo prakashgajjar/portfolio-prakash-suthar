@@ -6,7 +6,6 @@ const getProjectInfo = async (req, res) => {
   try {
     const project = await projectsModels.findOne({ slug });
 
-    // console.log(project);
     res.status(200).json({ project: project });
   } catch (error) {
     console.error("Error in projectsAddController:", error);
