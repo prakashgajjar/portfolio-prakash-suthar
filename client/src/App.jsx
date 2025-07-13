@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import Home from './home/home.jsx'
+import Home from './home/Home.jsx'
 import ProjectPage from './projects/ProjectPage.jsx'
 import PageTransition from './components/PageTransition.jsx'
 
