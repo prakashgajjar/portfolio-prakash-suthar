@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar";
 import getAllProject from "../api/getAllproject.api";
 import { FaLinkedin, FaTwitter, FaGithub, FaEnvelope, FaInstagram } from "react-icons/fa"
 import { useLocation } from "react-router-dom";
+import CustomCursor from "../components/CustomeCursor";
+import Hero from "./HeroSection";
 const drawCanvas = (id, showCircle, height) => {
   const canvas = document.getElementById(id);
   if (!canvas) return;
@@ -46,12 +48,9 @@ const positions = [
   "relative top-[620px] sm:left-[1300px] sm:top-[-250px]"
 ];
 
-
-
 const Home = () => {
-
-
   const location = useLocation();
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     if (location.hash) {
@@ -67,23 +66,18 @@ const Home = () => {
     drawCanvas("canvas1", true, 250);
     drawCanvas("canvas2", false, 300);
     drawCanvas("canvas3", false, 200);
-
     drawCanvas("canvas4", true, 250);
     drawCanvas("canvas5", false, 300);
     drawCanvas("canvas6", false, 300);
-
     drawCanvas("canvas7", false, 400);
     drawCanvas("canvas8", false, 500);
     drawCanvas("canvas9", false, 600);
-
     drawCanvas("canvas10", true, 700);
     drawCanvas("canvas11", false, 800);
     drawCanvas("canvas12", false, 900);
-
     drawCanvas("canvas13", true, 1000);
 
   }, []);
-
 
   useEffect(() => {
     getAllProject().then((data) => {
@@ -91,12 +85,10 @@ const Home = () => {
     });
   }, []);
 
-  const [projects, setProjects] = useState([]);
-
-
   return (
     <div className="scrollable relative ">
       <div>
+        <CustomCursor />
         <Navbar />
       </div>
       {/* Section 1: Home */}
@@ -107,18 +99,30 @@ const Home = () => {
           <canvas id="canvas3" width="70" />
         </div>
 
-        <div className="relative left-4 md:left-[10%] ">
-          <h1 className="text-purple-400 text-sm md:text-base mb-4 font-mono">Home /&gt;</h1>
-          <h1 className="text-3xl md:text-5xl font-bold leading-snug mb-4">
-            Hi, my name is <span className="text-purple-500">Prakash Suthar</span>
-          </h1>
-          <h2 className="text-2xl md:text-3xl italic font-light text-gray-300 mb-4">
-            I <span className="italic text-white">design</span> and{" "}
-            <span className="font-semibold text-white">develop</span> <RotatingText />
-          </h2>
+        <div className="relative left-4 md:left-[10%] overflow-hidden">
+          {/* Content with same positioning */}
+          <div>
+            <h1 className="text-purple-400 text-sm md:text-base mb-4 font-mono fade-in-up delay-500">
+              Home /&gt;
+            </h1>
 
-          <p className="text-md md:text-lg text-gray-400 mt-8">Let me show you...</p>
+            <h1 className="text-3xl md:text-5xl font-bold leading-snug mb-4 fade-in-up delay-600">
+              Hi, my name is{" "}
+              <span className="text-purple-500 fade-in-up delay-600">Prakash Suthar</span>
+            </h1>
+
+            <h2 className="text-2xl md:text-3xl italic font-light text-gray-300 mb-4 fade-in-up delay-1000">
+              I <span className="italic text-white">design</span> and{" "}
+              <span className="font-semibold text-white">develop</span> <RotatingText />
+            </h2>
+
+            <p className="text-md md:text-lg text-gray-400 mt-8 fade-in-up delay-1500">
+              Let me show you...
+            </p>
+          </div>
         </div>
+
+
       </section>
 
       <section id="work" className="relative overflow-hidden  min-h-screen bg-[#18181b] text-white px-6 md:px-68 pt-80">
@@ -167,41 +171,104 @@ const Home = () => {
 
           <div className="mt-10 relative left-4 md:left-[10%]">
             <pre className="whitespace-pre-wrap text-sm md:text-lg font-mono leading-relaxed">
-              <code>
-                <span className="text-yellow-400">class</span> PrakashSuthar {'{\n'}
-                <span className="text-gray-400">  // I can, because I do.{'\n'}
-  // My skills are growing every day.</span>{'\n'}
-                <span className="text-yellow-400">  constructor</span>() {'{\n'}
-                <span className="text-red-500">    this</span>.name = <span className="text-green-400">'Prakash Suthar'</span>{'\n'}
-                <span className="text-red-500">    this</span>.role = <span className="text-green-400">'Full-Stack MERN & Next.js Developer & AI/ML Enthusiast'</span>{'\n'}
-                <span className="text-red-500">    this</span>.email = <span className="text-green-400">'prakashgajjar096@gmail.com'</span>{'\n'}
-                <span className="text-red-500">    this</span>.basedIn = <span className="text-green-400">'India'</span>{'\n'}
-                {'}'}{'\n'}
-                <span className="text-yellow-400">  workExperience</span>() {'{\n'}
-                <span className="text-yellow-400">    return</span> [ {'\n'}
-                {'      { '}<span className="text-green-400">'2024-now'</span>: <span className="text-green-400">'Full-Stack Developer && Deep Learning learner'</span> {'},\n'}
-                {'      { '}<span className="text-green-400">'2023-2024'</span>: <span className="text-green-400">'MERN Developer & Next.js - Social Platforms & AI Tools'</span> {'}\n'}
-                ];{'\n'}
-                {'}'}{'\n'}
-                <span className="text-yellow-400">  education</span>() {'{\n'}
-                <span className="text-yellow-400">    return</span> [ {'\n'}
-                {'      { '}<span className="text-green-400">'2023-2027'</span>: <span className="text-green-400">'Bachelor’s Degree - Computer Science / IT'</span> {'},\n'}
-                {'      { '}<span className="text-green-400">'Always'</span>: <span className="text-green-400">'Self-learning through projects'</span> {'}\n'}
-                ];{'\n'}
-                {'}'}{'\n'}
-                <span className="text-yellow-400">  skills</span>() {'{\n'}
-                <span className="text-yellow-400">    return</span> [ {'\n'}
-                <span className="text-green-400">'HTML/CSS/JS/Ts'</span>, {'\n'}
-                <span className="text-green-400">'React'</span>, <span className="text-green-400">'Node.js'</span>, <span className="text-green-400">'Express'</span>, <span className="text-green-400">'MongoDB'</span>, {'\n'}
-                <span className="text-green-400">'Next.js'</span>, <span className="text-green-400">'TailwindCSS'</span>, <span className="text-green-400">'Socket.IO'</span>, {'\n'}
-                <span className="text-green-400">'Java'</span>, <span className="text-green-400">'Python'</span>, <span className="text-green-400">'NumPy'</span>, <span className="text-green-400">'Pandas'</span>, <span className="text-green-400">'Matplotlib'</span>, {'\n'}
-                <span className="text-green-400">'REST APIs'</span>, <span className="text-green-400">'JWT/Auth'</span>, <span className="text-green-400">'Git/GitHub'</span>, {'\n'}
-                <span className="text-green-400">'FFmpeg'</span>, <span className="text-green-400">'OpenAI API'</span>, <span className="text-green-400">'AWS Basics'</span>, {'\n'}
-                <span className="text-green-400">'UI/UX'</span>, <span className="text-green-400">'Design Thinking'</span> {'\n'}
-                ];{'\n'}
-                {'}'}{'\n'}
-                {'}'}
+              <code className="block font-mono text-sm md:text-base leading-relaxed">
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">class</span> PrakashSuthar {'{'}
+                </div>
+
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-gray-400">  // I can, because I do.</span>
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-gray-400">  // My skills are growing every day.</span>
+                </div>
+
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">  constructor</span>() {'{'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-red-500">    this</span>.name = <span className="text-green-400">'Prakash Suthar'</span>
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-red-500">    this</span>.role = <span className="text-green-400">'Full-Stack MERN & Next.js Developer & AI/ML Enthusiast'</span>
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-red-500">    this</span>.email = <span className="text-green-400">'prakashgajjar096@gmail.com'</span>
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-red-500">    this</span>.basedIn = <span className="text-green-400">'India'</span>
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">{'}'}</div>
+
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">  workExperience</span>() {'{'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">    return</span> [
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'      { '}<span className="text-green-400">'2024-now'</span>: <span className="text-green-400">'Full-Stack Developer && Deep Learning learner'</span> {'},'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'      { '}<span className="text-green-400">'2023-2024'</span>: <span className="text-green-400">'MERN Developer & Next.js - Social Platforms & AI Tools'</span> {'}'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'    ];'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">{'  }'}</div>
+
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">  education</span>() {'{'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">    return</span> [
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'      { '}<span className="text-green-400">'2023-2027'</span>: <span className="text-green-400">'Bachelor’s Degree - Computer Science / IT'</span> {'},'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'      { '}<span className="text-green-400">'Always'</span>: <span className="text-green-400">'Self-learning through projects'</span> {'}'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'    ];'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">{'  }'}</div>
+
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">  skills</span>() {'{'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-yellow-400">    return</span> [
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'HTML/CSS/JS/Ts'</span>,
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'React'</span>, <span className="text-green-400">'Node.js'</span>, <span className="text-green-400">'Express'</span>, <span className="text-green-400">'MongoDB'</span>,
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'Next.js'</span>, <span className="text-green-400">'TailwindCSS'</span>, <span className="text-green-400">'Socket.IO'</span>,
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'Java'</span>, <span className="text-green-400">'Python'</span>, <span className="text-green-400">'NumPy'</span>, <span className="text-green-400">'Pandas'</span>, <span className="text-green-400">'Matplotlib'</span>,
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'REST APIs'</span>, <span className="text-green-400">'JWT/Auth'</span>, <span className="text-green-400">'Git/GitHub'</span>,
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'FFmpeg'</span>, <span className="text-green-400">'OpenAI API'</span>, <span className="text-green-400">'AWS Basics'</span>,
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  <span className="text-green-400">'UI/UX'</span>, <span className="text-green-400">'Design Thinking'</span>
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">
+                  {'    ];'}
+                </div>
+                <div className="hover:bg-gray-800/50 px-2 rounded">{'  }'}</div>
+
+                <div className="hover:bg-gray-800/50  px-2 rounded">{'}'}</div>
               </code>
+
             </pre>
 
           </div>

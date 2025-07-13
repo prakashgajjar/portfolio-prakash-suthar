@@ -37,3 +37,84 @@
 html {
   scroll-behavior: smooth;
 }
+
+html, body {
+  cursor: none;
+}
+
+/* Slide away the purple overlay to left */
+@keyframes slideLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-slide-left {
+  animation: slideLeft 1.2s ease forwards;
+}
+
+/* Text reveal mask animation */
+.reveal-mask {
+  transform: translateY(100%);
+  animation: slideUp 1s ease forwards;
+}
+
+.reveal-mask:nth-child(1) {
+  animation-delay: 2.2s;
+}
+
+.reveal-mask:nth-child(2) {
+  animation-delay: 2.6s;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0%);
+  }
+}
+
+/* Fade in up */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(35px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.fade-in-up.delay-500 { animation-delay: 1.2s; }
+.fade-in-up.delay-600 { animation-delay: 1.5s; }
+.fade-in-up.delay-1000 { animation-delay: 1.8s; }
+.fade-in-up.delay-1500 { animation-delay: 2.2s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.reveal-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.reveal-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #7c3aed; /* Tailwind purple-600 */
+  transform: translateX(0);
+  animation: mask-reveal 1.2s forwards;
+}
+
+@keyframes mask-reveal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
