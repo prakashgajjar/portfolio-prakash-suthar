@@ -1,8 +1,8 @@
 const apiRoutes = {
-  addOneProject: "http://localhost:3000/projects/add",
-  getAllProject: "http://localhost:3000/projects/get",
-  getOneProject: "http://localhost:3000/projects/getone",
-  responseSend: "http://localhost:3000/api/response"
+  addOneProject: "https://prakash-virid.vercel.app/projects/add",
+  getAllProject: "https://prakash-virid.vercel.app/projects/get",
+  getOneProject: "https://prakash-virid.vercel.app/projects/getone",
+  responseSend: "https://prakash-virid.vercel.app/api/response"
 };
 
 export default apiRoutes;
