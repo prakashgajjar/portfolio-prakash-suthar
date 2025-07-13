@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import getOneProject from "../api/getOneProject.api";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import CustomCursor from "../components/CustomeCursor";
 
 const ProjectPage = () => {
   const slug = useParams(); // get slug directly
@@ -56,8 +57,11 @@ const ProjectPage = () => {
 
   return (
     project && (
-      <div className="flex flex-col-reverse lg:flex-row bg-black text-white">
+      <div className="flex flex-col-reverse cursor-none lg:flex-row bg-black text-white">
         {/* Images Section */}
+        <div className="hidden sm:block">
+          <CustomCursor />
+        </div>
         <div className="w-full lg:w-2/3 flex flex-col gap-4 p-8">
           {project?.images?.map((img, i) => (
             <img
