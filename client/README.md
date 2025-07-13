@@ -42,9 +42,9 @@ I believe in **clean design**, **fast performance**, and **bringing ideas to lif
 
 ## 📸 Preview
 
-![Home Page](./screenshots/home.png)
-![Projects](./screenshots/projects.png)
-![Project Detail](./screenshots/detail.png)
+![Home Page](https://res.cloudinary.com/dgbzruua4/image/upload/v1752438148/Screenshot_2025-07-14_015129_gaddcq.png)
+![Projects](https://res.cloudinary.com/dgbzruua4/image/upload/v1752438153/Screenshot_2025-07-14_015148_xw5h34.png)
+![Project Detail](https://res.cloudinary.com/dgbzruua4/image/upload/v1752438153/Screenshot_2025-07-14_015206_yodm8m.png)
 
 ---
 
