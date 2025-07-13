@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiRoutes from "../lib/apis";
+import apiRoutes from "../lib/apis.js";
 const getAllProject = async () => {
     try {
         const res = await axios.get(apiRoutes.getAllProject);

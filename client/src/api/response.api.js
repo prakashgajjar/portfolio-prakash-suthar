@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiRoutes from "../lib/apis";
+import apiRoutes from "../lib/apis.js";
 const responseSend = async (name , message) => {
     try {
         const res = await axios.post(apiRoutes.responseSend , {

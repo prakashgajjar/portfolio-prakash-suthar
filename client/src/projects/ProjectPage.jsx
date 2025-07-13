@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import getOneProject from "../api/getOneProject.api";
+import getOneProject from "../api/getOneProject.api.js";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import CustomCursor from "../components/CustomeCursor";
+import CustomCursor from "../components/CustomeCursor.jsx";
 
 const ProjectPage = () => {
   const slug = useParams(); // get slug directly

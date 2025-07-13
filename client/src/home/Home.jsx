@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import ProjectCard from "../projects/ProjectCard";
-import RotatingText from "../components/RotatingText";
-import Navbar from "../components/Navbar";
-import getAllProject from "../api/getAllproject.api";
+import ProjectCard from "../projects/ProjectCard.jsx";
+import RotatingText from "../components/RotatingText.jsx";
+import Navbar from "../components/Navbar.jsx";
+import getAllProject from "../api/getAllproject.api.js";
 import { FaLinkedin, FaTwitter, FaGithub, FaEnvelope, FaInstagram } from "react-icons/fa"
 import { useLocation, useNavigate } from "react-router-dom";
-import CustomCursor from "../components/CustomeCursor";
+import CustomCursor from "../components/CustomeCursor.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import GetInTouchPopup from "../components/GetInTouchPopup";
-import MessageSentPopup from "../components/MessageSentPopup";
+import GetInTouchPopup from "../components/GetInTouchPopup.jsx";
+import MessageSentPopup from "../components/MessageSentPopup.jsx";
 
 
 const drawCanvas = (id, showCircle, height) => {

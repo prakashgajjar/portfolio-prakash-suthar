@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X } from "lucide-react"; // Or your close icon
-import responseSend from "../api/response.api";
+import responseSend from "../api/response.api.js";
 
 export default function GetInTouchPopup({ show, onClose , onSent }) {
   const [name, setName] = useState("");

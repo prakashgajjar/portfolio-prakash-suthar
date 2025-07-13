@@ -1,8 +1,8 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import Home from './home/home'
-import ProjectPage from './projects/ProjectPage'
-import PageTransition from './components/PageTransition'
+import Home from './home/home.jsx'
+import ProjectPage from './projects/ProjectPage.jsx'
+import PageTransition from './components/PageTransition.jsx'
 
 export default function App() {
   const location = useLocation()
