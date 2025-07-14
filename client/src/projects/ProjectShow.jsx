@@ -7,12 +7,12 @@ const ProjectShow = ({project , handlePrev ,handleNext}) => {
     console.log(handleNext)
     const navigate = useNavigate()
     return (
-        <div><div className="flex flex-col-reverse h-screen cursor-none lg:flex-row bg-black text-white">
+        <div><div className="flex flex-col-reverse h-screen overflow-auto  cursor-none lg:flex-row bg-black text-white">
             <div className="hidden sm:block">
                 <CustomCursor />
             </div>
 
-            <div className="w-full h-screen overflow-scroll lg:w-2/3 flex flex-col gap-4 p-8">
+            <div className="w-full h-screen sm:overflow-scroll   lg:w-2/3 flex flex-col gap-4 p-8">
                 {project.images?.length ? (
                     project.images.map((img, i) => (
                         <img
