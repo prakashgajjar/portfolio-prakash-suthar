@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-import { X } from "lucide-react"; // Or your close icon
-import responseSend from "../api/response.api.js";
+import { X } from "lucide-react";
 
-export default function GetInTouchPopup({ show, onClose , onSent }) {
+export default function GetInTouchPopup({ show, onClose, onSent }) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("Name:", name);
-    // console.log("Message:", message);
-    responseSend(name, message).then(()=>{
-      onSent();
-    }).catch((error)=>{
-      console.log(error);
-    })
+    onSent();
     onClose();
     setName("");
     setMessage("");
