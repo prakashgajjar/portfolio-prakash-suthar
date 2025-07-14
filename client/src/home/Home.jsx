@@ -147,7 +147,7 @@ const Home = () => {
 
       </section>
 
-      <section id="work" className="relative overflow-hidden  min-h-screen bg-[#18181b] text-white px-6 md:px-68 pt-80">
+      <section id="work" className="relative overflow-hidden  min-h-[120vh] bg-[#18181b] text-white px-6 md:px-68 pt-80">
         <div className="-mt-60">
           <div className="absolute  -left-4 md:left-[18%] z-0">
             <canvas id="canvas4" width="70" />
